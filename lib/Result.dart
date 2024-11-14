@@ -14,13 +14,12 @@ class _ResultState extends State<Result> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(),
-      body:
-      Center(
-        child: Consumer<Addsub>(
-          builder: (context, a, child) {
+      body: Center(
+        child: Consumer<AddSub>(
+          builder: (context, ad, child) {
             return Text(
-              'Result: ${a.result}',
-              style: TextStyle(fontSize: 30,fontWeight: FontWeight.bold),
+              'Result: ${ad.result}',
+              style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
             );
           },
         ),

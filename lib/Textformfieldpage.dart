@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:newtask/Classfile.dart';
+import 'package:newtask/Result.dart';
 import 'package:newtask/buttonpage.dart';
 import 'package:provider/provider.dart';
 
@@ -12,8 +13,9 @@ class Textformfieldpage extends StatefulWidget {
 }
 
 class _TextformfieldpageState extends State<Textformfieldpage> {
-  TextEditingController fist = TextEditingController();
+  TextEditingController first = TextEditingController();
   TextEditingController second = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -25,7 +27,7 @@ class _TextformfieldpageState extends State<Textformfieldpage> {
                 onPressed: () {
                   Navigator.push(context, MaterialPageRoute(
                     builder: (context) {
-                      return Buttonpage();
+                      return Result();
                     },
                   ));
                 },
@@ -39,6 +41,7 @@ class _TextformfieldpageState extends State<Textformfieldpage> {
             padding: const EdgeInsets.only(left: 30, right: 30, top: 40),
             child: Center(
               child: TextFormField(
+                controller: first,
                 decoration: InputDecoration(
                     hintText: ("Enter first number"),
                     border: OutlineInputBorder(
@@ -48,22 +51,10 @@ class _TextformfieldpageState extends State<Textformfieldpage> {
             ),
           ),
           Padding(
-            padding: const EdgeInsets.only(top: 20),
-            child: ElevatedButton(
-                onPressed: () {
-                  int a = int.parse(fist.text);
-                  int b = int.parse(second.text);
-                  Provider.of<Addsub>(context, listen: false).Add(a, b);
-                },
-                child: Text(
-                  "Submit",
-                  style: TextStyle(fontWeight: FontWeight.bold),
-                )),
-          ),
-          Padding(
             padding: const EdgeInsets.only(left: 30, right: 30, top: 20),
             child: Center(
               child: TextFormField(
+                controller: second,
                 decoration: InputDecoration(
                     hintText: ("Enter second number"),
                     border: OutlineInputBorder(
@@ -72,14 +63,39 @@ class _TextformfieldpageState extends State<Textformfieldpage> {
               ),
             ),
           ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              ElevatedButton(
+                  onPressed: () {
+                    int a= int.parse(first.text);
+                    int b= int.parse(second.text);
+                    Provider.of<AddSub>(context, listen: false).add(a,b);
+                  },
+                  child: Text(
+                    "Add",
+                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+                  )),
+            ],
+          ),
           Padding(
-            padding: const EdgeInsets.only(top: 20),
-            child: ElevatedButton(
-                onPressed: () {},
-                child: Text(
-                  "Submit",
-                  style: TextStyle(fontWeight: FontWeight.bold),
-                )),
+            padding: const EdgeInsets.only(top: 20.0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                ElevatedButton(
+                    onPressed: () {
+                      int a= int.parse(first.text);
+                      int b= int.parse(second.text);
+                      Provider.of<AddSub>(context, listen: false).sub(a,b);
+                    },
+                    child: Text(
+                      "Subtract",
+                      style:
+                          TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+                    )),
+              ],
+            ),
           )
         ],
       ),

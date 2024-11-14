@@ -5,7 +5,7 @@ import 'package:provider/provider.dart';
 import 'Textformfieldpage.dart';
 
 void main() {
-  runApp(ChangeNotifierProvider(create: (context) => Addsub(),
+  runApp(ChangeNotifierProvider(create: (context) => AddSub(),
       child: MyApp()));
 }
 
